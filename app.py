@@ -117,7 +117,6 @@ def time_tester():
         db.execute('insert into results (userId, result, resultDate) values (?, ?, ?)', [
             user['id'], result, date.today()])
         db.commit()
-        # return '<h1>{}</h1>'.format(db_fun.show_results(db, user['id']))
         return redirect(url_for('my_profile'))
 
     return render_template('time-tester.html', user=user)
