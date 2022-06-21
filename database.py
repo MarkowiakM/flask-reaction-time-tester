@@ -41,27 +41,30 @@ def select_result(x):
 
 
 def user_best_result(db, userId):
-    return min(map(select_result, all_user_results(db, userId).fetchall()))
+    if all_user_results(db, userId).fetchall():
+        return min(map(select_result, all_user_results(db, userId).fetchall()))
 
 
 def best_result(db):
-    return min(map(select_result, all_results(db).fetchall()))
+    if all_results(db).fetchall():
+        return min(map(select_result, all_results(db).fetchall()))
 
 
 def user_results_daily(db, userId):
-    user_results = all_user_results(db, userId).fetchall()
+    if all_user_results(db, userId).fetchall():
+        user_results = all_user_results(db, userId).fetchall()
 
-    results_by_date = OrderedDict()
-    daily_results = []
-    days = set()
-    for result in user_results:
-        if result['resultDate'] in results_by_date:
-            results_by_date[result['resultDate']].append(
-                float(result['result']))
-        else:
-            results_by_date.update(
-                {result['resultDate']: [float(result['result'])]})
-    for day, results in results_by_date.items():
-        days.add(day)
-        daily_results.append(sum(results) / len(results))
-    return (list(days), daily_results)
+        results_by_date = OrderedDict()
+        daily_results = []
+        days = set()
+        for result in user_results:
+            if result['resultDate'] in results_by_date:
+                results_by_date[result['resultDate']].append(
+                    float(result['result']))
+            else:
+                results_by_date.update(
+                    {result['resultDate']: [float(result['result'])]})
+        for day, results in results_by_date.items():
+            days.add(day)
+            daily_results.append(sum(results) / len(results))
+        return (list(days), daily_results)

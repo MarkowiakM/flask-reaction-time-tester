@@ -24,6 +24,7 @@
         <div class="own-results">
             <span>My results</span>
             <div class="plot">
+                {% if labels and values %}
                 <canvas id="chart"></canvas>
                 <script>
                     const canvas = document.getElementById('chart').getContext('2d');
@@ -43,6 +44,9 @@
                     }
                         });
                 </script>
+                {% else %}
+                <span> Take tests to monitor your results</span>
+                {% endif %}
             </div>
         </div>
     </section>

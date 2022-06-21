@@ -81,6 +81,9 @@ main > section > div > span {
     background-color: var(--yellow);
 }
 
+.plots > .own-results > div {
+    color: var(--yellow);
+}
 
 .chart {
     height: 400px;

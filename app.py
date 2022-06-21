@@ -98,10 +98,12 @@ def my_profile():
     db = db_fun.get_db()
     user_test_amount = db_fun.user_test_amount(db, user['id'])
     all_test_amount = db_fun.all_test_amount(db)
-    user_best_result = db_fun.user_best_result(db, user['id'])
-    best_result = db_fun.best_result(db)
+    user_best_result = db_fun.user_best_result(db, user['id']) or 0
+    best_result = db_fun.best_result(db) or 0
 
-    labels, values = db_fun.user_results_daily(db, user['id'])
+    labels, values = None, None
+    if db_fun.user_results_daily(db, user['id']):
+        labels, values = db_fun.user_results_daily(db, user['id'])
 
     return render_template('my-profile.html', user=user, user_test_amount=user_test_amount, all_test_amount=all_test_amount, user_best_result=user_best_result, best_result=best_result, labels=labels, values=values)
 
