@@ -1,7 +1,6 @@
 from typing import OrderedDict
 from flask import g
 import sqlite3
-import datetime
 
 
 def connect_db():
@@ -53,10 +52,9 @@ def best_result(db):
 def user_results_daily(db, userId):
     if all_user_results(db, userId).fetchall():
         user_results = all_user_results(db, userId).fetchall()
-
         results_by_date = OrderedDict()
         daily_results = []
-        days = set()
+        days = []
         for result in user_results:
             if result['resultDate'] in results_by_date:
                 results_by_date[result['resultDate']].append(
@@ -65,6 +63,13 @@ def user_results_daily(db, userId):
                 results_by_date.update(
                     {result['resultDate']: [float(result['result'])]})
         for day, results in results_by_date.items():
-            days.add(day)
+            days.append(day)
             daily_results.append(sum(results) / len(results))
-        return (list(days), daily_results)
+        return (days, daily_results)
+
+
+def show_results(db, userId):
+    x = []
+    for a in all_user_results(db, userId).fetchall():
+        x.append(a['result'])
+    return x
