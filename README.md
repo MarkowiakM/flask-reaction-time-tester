@@ -1,4 +1,4 @@
-# flask-reaction-time-tester
+# Flask-reaction-time-tester
 
 The scripting languages project at Wrocław Univeristy of Science and Technology
 
