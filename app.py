@@ -12,11 +12,13 @@ app.config['SECRET_KEY'] = os.urandom(24)
 
 @app.teardown_appcontext
 def close_db(error):
+    """close_db - closes the db when the application context ends"""
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
 
 def get_user_from_session():
+    """get_user_from_session - returns a current user in session"""
     user = None
     if 'user' in session:
         email = session['user']
@@ -27,14 +29,17 @@ def get_user_from_session():
 
 
 def check_valid_email(email):
+    """check_valid_email - returns true if a given email is valid"""
     return (ValidEmail(email)).email
 
 
 def check_valid_password(password):
+    """check_valid_password - returns true if a given password is valid"""
     return (ValidPassword(password)).password
 
 
 def add_user_to_session(input_email, input_password):
+    """add_user_to_session - adds a current user to session if correctly logged in"""
     db = db_fun.get_db()
     user = db_fun.get_user(db, input_email).fetchone()
     if user and check_password_hash(user['passwd'], input_password):
@@ -43,12 +48,14 @@ def add_user_to_session(input_email, input_password):
 
 @app.route('/', methods=['GET'])
 def index():
+    """index - creates home page"""
     user = get_user_from_session()
     return render_template('home.html', user=user)
 
 
 @app.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
+    """sign_up - creates sign-up page"""
     if request.method == 'POST':
         db = db_fun.get_db()
         given_email = request.form['email']
@@ -77,6 +84,7 @@ def sign_up():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """login - creates login page"""
     if request.method == 'POST':
         add_user_to_session(request.form['email'],  request.form['password'])
         if 'user' in session:
@@ -88,12 +96,14 @@ def login():
 
 @app.route('/logout')
 def logout():
+    """logout - logs out current user from session"""
     session.pop('user', None)
     return redirect(url_for('index'))
 
 
 @app.route('/my-profile')
 def my_profile():
+    """my_profile - creates my-profile page"""
     user = get_user_from_session()
     db = db_fun.get_db()
     user_test_amount = db_fun.user_test_amount(db, user['id'])
@@ -110,6 +120,7 @@ def my_profile():
 
 @app.route('/time-tester', methods=['GET', 'POST'])
 def time_tester():
+    """time_tester - creates time-tester page"""
     user = get_user_from_session()
     if request.method == 'POST':
         db = db_fun.get_db()
@@ -123,4 +134,4 @@ def time_tester():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
