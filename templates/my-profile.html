@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>My profile</title>{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/my-profile.css')}}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+{% endblock %}
+
+
+{% block nav %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">HOME</a></li>
+        <li><a href="{{ url_for('time_tester') }}">TAKE A TEST</a></li>
+        <li><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+<main>
+    <section class="plots">
+        <div class="own-results">
+            <span>My results</span>
+            <div class="plot">
+                <canvas id="chart"></canvas>
+                <script>
+                    const canvas = document.getElementById('chart').getContext('2d');
+                    const chart = new Chart(canvas, {
+                        type: 'line',
+                        data: {
+                            labels: {{ labels | safe }},
+                    datasets: [{
+                        label: 'Results',
+                        data: {{ values | safe }},
+                        fill: false,
+                        borderColor: '#fca311',
+                        lineTension: 0.1}]
+                            },
+                    options: {
+                        responsive: true
+                    }
+                        });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <section class="tests">
+        <div class="own-results">
+            <span>My taken tests</span>
+            <div class="result">{{ user_test_amount }}</div>
+        </div>
+        <div class="comparison">
+            <div class="result">{{ all_test_amount }}</div>
+            <span>All users taken tests</span>
+        </div>
+    </section>
+
+    <section class="best-results">
+        <div class="own-results">
+            <span>My best result</span>
+            <div class="result">{{ user_best_result }} ms</div>
+        </div>
+        <div class="comparison">
+            <div class="result">{{ best_result }} ms</div>
+            <span>General best result</span>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

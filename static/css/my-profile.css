@@ -1,0 +1,113 @@
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #fff;
+    font-size: 24px;
+    color: white;
+    align-content: stretch;
+    justify-content: space-around;
+}
+
+main > section {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    margin: 10vh 10vw;
+    justify-content: space-around;
+}
+
+main > section > div {
+    display: flex;
+    margin: 5vh 0;
+    flex-grow: 1;
+    justify-content: space-around;
+    min-height: 40vh;
+}
+
+main > section > div > div,
+main > section > div > span {
+    width: 40%;
+    border-radius: 20px;
+    padding: 10% 10%;
+    box-shadow: 0 0 1em rgb(94, 94, 94);
+    transition: 0.3s;
+
+}
+
+main > section > div > div {
+    background-color: #fff;
+    text-align: center;
+}
+
+main > section > div > span {
+    display: block;
+}
+
+.tests > .own-results > span {
+    background-color: var(--blue-light);
+}
+
+.tests > .own-results > div {
+    color: var(--blue-light);
+}
+
+.tests > .comparison > span {
+    background-color: var(--blue-dark);
+}
+
+.tests > .comparison > div {
+    color: var(--blue-dark);
+}
+
+.best-results > .own-results > span {
+    background-color: var(--green-dark);
+}
+
+.best-results > .own-results > div {
+    color: var(--green-dark);
+}
+
+.best-results > .comparison > span {
+    background-color: var(--green-light);
+}
+
+.best-results > .comparison > div {
+    color: var(--green-light);
+}
+
+.plots > .own-results > span {
+    background-color: var(--yellow);
+}
+
+
+.chart {
+    height: 400px;
+    width: 900px;
+}
+
+main > .plots > div {
+    width: 100%;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    margin: 5vh 0;
+    flex-grow: 1;
+    justify-content: space-around;
+    min-height: 50vh;
+}
+
+.plots > .own-results > span,
+.plots > .own-results > div {
+    padding: 5% 10%;
+    display: block;
+    width: 100%;
+}
+
+.plots > .own-results > span {
+    border-radius: 20px;
+
+    box-shadow: 0 0 1em rgb(94, 94, 94);
+    transition: 0.3s;
+}

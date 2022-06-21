@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>Time tester</title>{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/time-tester.css')}}">
+{% endblock %}
+
+
+{% block nav %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">HOME</a></li>
+        <li><a href="{{ url_for('my_profile') }}">MY PROFILE</a></li>
+        <li><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+    </ul>
+</nav>
+{% endblock %}
+
+
+{% block content %}
+<section class="time-tester" id="time-tester">
+    <div class="tester blue" id="blue">
+        <span class="info">Click to start</span>
+    </div>
+    <form class="result-form" action="{{ url_for('time_tester') }}" method="POST">
+        <input class="result-input" type="text" name="input">
+        <button type="submit" class="submit">Save result</button>
+    </form>
+    <div class="results">
+        <div class="result-info"><span>Your results</span></div>
+        <div class="result-list">
+            <span class="single-result"></span>
+            <span class="single-result"></span>
+            <span class="single-result"></span>
+            <span class="single-result"></span>
+            <span class="single-result"></span>
+            <span class="final-result">Avg:</span>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='src/app.js')}}"></script>
+</section>
+{% endblock %}

@@ -1,0 +1,97 @@
+.time-tester {
+    display: flex;
+    min-height: 80vh;
+    padding: 5vh 0;
+    background-color: #fff;
+    color: #fff;
+    font-size: 20px;
+    align-content: stretch;
+    justify-content: space-around;
+}
+
+.tester,
+.result-form  {
+    display: flex;
+    min-width: 50%;
+    cursor: pointer;
+    border-radius: 30px;
+    box-shadow: 0 0 1em rgb(40, 40, 40);
+}
+
+.result-form {
+    display: none;
+    overflow: hidden;
+}
+
+.result-form > button {
+    background-color: var(--blue-light);
+    width: 100%;
+    border: 0;
+    color: #fff;
+    font-size: 40px;
+    transition: 0.3s;
+}
+
+.result-form > button:hover {
+    background-color: var(--blue-dark);
+    box-shadow: 0 0 1em #000;
+}
+.blue {
+    background-color: var(--blue-light);
+}
+
+.red {
+    background-color: var(--red-dark);
+}
+
+.green {
+    background-color: var(--green-dark);
+}
+
+.tester > span {
+    text-align: center;
+    flex-grow: 1;
+    margin: auto;
+    font-size: 40px;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(14, 14, 14);
+    min-width: 30vw;
+    justify-content: space-between;
+    align-content: stretch;
+    font-size: 20px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 0 1em rgb(40, 40, 40);
+
+}
+
+.result-info {
+    display: flex;
+    height: 20%;
+}
+
+.result-info > span {
+    height: 20%;
+    margin: auto;
+}
+
+.result-list {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.result-list > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--blue-light);
+    height: 15%;
+    width: 100%;
+}
+

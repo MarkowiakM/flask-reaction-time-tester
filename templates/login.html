@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>Login</title>{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+{% endblock %}
+
+
+{% block nav %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">HOME</a></li>
+        <li><a href="{{ url_for('sign_up') }}">SIGN UP</a></li>
+    </ul>
+</nav>
+{% endblock %}
+
+
+{% block content %}
+<section class="login">
+    {% if signed_up %}
+    <div class="signed-up">
+        <p>Now, just sign in to your new account</p>
+    </div>
+    {% endif %}
+    {% if wrong_data %}
+    <div class="wrong-data">
+        <p>Wrong data given!</p>
+    </div>
+    {% endif %}
+    <form action="{{ url_for('login') }}" method="POST">
+        <input class="input email" type="text" placeholder="Email address" name="email" required>
+        <input class="input password" type="password" placeholder="Password" name="password" required>
+        <button type="submit" class="submit" name="submit">Log in</button>
+    </form>
+    {% if not signed_up and not wrong_password %}
+    <div class="sign-up">
+        <p>Don't have an account yet? <a href="{{ url_for('sign_up') }}"> Sign up!</a></p>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

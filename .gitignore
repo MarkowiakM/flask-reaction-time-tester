@@ -1,0 +1,8 @@
+__pycache__/
+venv/
+.vscode/
+
+# Ignore database files
+scheme.sql
+data.db
+

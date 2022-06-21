@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} <title>Home</title>{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}">
+{% endblock %}
+
+
+{% block nav %}
+<nav>
+    <ul>
+        {% if not user %}
+            <li><a href="{{ url_for('sign_up') }}">SIGN UP</a></li>
+            <li><a href="{{ url_for('login') }}">LOGIN</a></li>
+        {% endif %}
+        {% if user %}
+            <li><a href="{{ url_for('time_tester') }}">TAKE A TEST</a></li>
+            <li><a href="{{ url_for('my_profile') }}">MY PROFILE</a></li>
+            <li><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}
+
+
+{% block content %}
+<header>
+    <img src="{{ url_for('static', filename='img/clock.png')}}" alt="" class="clock">
+    <h1>Measure your reaction time!</h1>
+</header>
+<section>
+</section>
+{% endblock %}
